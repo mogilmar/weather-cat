@@ -1,0 +1,113 @@
+body {
+  font-family: "Exo 2", sans-serif;
+}
+p {
+  mix-blend-mode: difference;
+  color: floralwhite;
+}
+h6 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: black;
+  mix-blend-mode: color-burn;
+}
+form {
+  width: 50%;
+  margin: 0 auto;
+}
+.form-control {
+  border-radius: 20px;
+}
+.input-group:not(.has-validation)
+  > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.btn {
+  background-color: transparent;
+  border-color: transparent;
+  position: relative;
+}
+.btn:focus {
+  box-shadow: none;
+}
+.input-group .btn {
+  position: relative;
+  left: -60px;
+  z-index: 5;
+}
+
+#location-button {
+  position: relative;
+  left: -140px;
+  z-index: 5;
+}
+.row.space {
+  min-height: 150px;
+}
+.current-temperature {
+  font-size: 40px;
+  font-weight: 300;
+  text-align: right;
+  padding-right: 10px;
+  background-color: floralwhite;
+}
+.city {
+  font-size: 25px;
+}
+.city-date {
+  margin-left: 3px;
+}
+.details,
+.date,
+.description,
+.min-temperature {
+  font-size: 14px;
+}
+
+.description {
+  text-align: center;
+}
+.row.space-2 {
+  min-height: 100px;
+}
+
+.main-information {
+  mix-blend-mode: difference;
+}
+
+.main-weather-details {
+  display: contents;
+}
+
+.main-weather-details > p {
+  margin-left: 12px;
+  margin-right: 12px;
+  line-height: 18px;
+}
+
+.current-status {
+  font-size: 25px;
+}
+
+.next-forecast {
+  text-align: center;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.weather-pic {
+  font-size: 38px;
+}
+#myVideo {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
