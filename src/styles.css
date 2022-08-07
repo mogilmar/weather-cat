@@ -100,6 +100,11 @@ form {
 .weather-pic {
   font-size: 38px;
 }
+
+.link {
+  font-size: 12px;
+}
+
 #myVideo {
   width: 100vw;
   height: 100vh;
