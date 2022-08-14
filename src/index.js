@@ -143,7 +143,8 @@ function getIconClass(weatherId) {
 }
 
 function applyWeatherData(response) {
-  tempElement.innerHTML = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
+  tempElement.innerHTML = Math.round(celsiusTemperature);
   cityNameElement.innerHTML = response.data.name;
   currentDate.innerHTML = getFormattedCurrentDate();
   humidityElement.innerHTML = response.data.main.humidity;
@@ -155,3 +156,24 @@ function applyWeatherData(response) {
     response.data.weather[0].id
   )} current-status`;
 }
+
+function convertTemperature(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#current-temp");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  tempElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function customizeTemperature(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#current-temp");
+  tempElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
+let cTempLink = document.querySelector("#celsius-temp");
+let fTempLink = document.querySelector("#fahrenheit-temp");
+
+fTempLink.addEventListener("click", convertTemperature);
+cTempLink.addEventListener("click", customizeTemperature);

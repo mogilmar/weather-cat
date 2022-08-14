@@ -116,3 +116,10 @@ form {
   bottom: 0;
   z-index: -1;
 }
+
+#celsius-temp,
+#fahrenheit-temp {
+  text-decoration: none;
+  color: floralwhite;
+  font-size: 30px;
+}
