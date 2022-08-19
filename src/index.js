@@ -62,7 +62,7 @@ searchButton.addEventListener("click", onUserInput);
 let locationButton = document.querySelector("#location-button");
 locationButton.addEventListener("click", onDefineCurrentLocation);
 
-function displayForecast() {
+function displayForecast(response) {
   let forecastElement = document.querySelector("#next-forecast");
 
   let forecastHTML = `<div class="row">`;
@@ -89,9 +89,13 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+function displayCurrentLocation() {
+  navigator.geolocation.getCurrentPosition(applyLocationData);
+}
+
 function onDefineCurrentLocation(event) {
   event.preventDefault();
-  navigator.geolocation.getCurrentPosition(applyLocationData);
+  displayCurrentLocation();
 }
 
 function applyLocationData(position) {
@@ -169,6 +173,12 @@ function getIconClass(weatherId) {
   return iconClass;
 }
 
+function getForecast(coordinates) {
+  let apiKey = "2b1c531b63a0a1bd70c91ee6eaa4b38b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function applyWeatherData(response) {
   celsiusTemperature = response.data.main.temp;
   tempElement.innerHTML = Math.round(celsiusTemperature);
@@ -182,6 +192,8 @@ function applyWeatherData(response) {
   weatherIconElement.className = `fa-solid ${getIconClass(
     response.data.weather[0].id
   )} current-status`;
+
+  getForecast(response.data.coord);
 }
 
 function convertTemperature(event) {
@@ -205,4 +217,4 @@ let fTempLink = document.querySelector("#fahrenheit-temp");
 fTempLink.addEventListener("click", convertTemperature);
 cTempLink.addEventListener("click", customizeTemperature);
 
-displayForecast();
+displayCurrentLocation();
