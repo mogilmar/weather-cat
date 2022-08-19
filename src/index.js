@@ -69,21 +69,43 @@ function formatDay(timestamp) {
   return days[day];
 }
 
+function formatForecastDate(timestamp) {
+  let parsedDate = new Date(timestamp * 1000);
+  let months = [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+  ];
+  let date = parsedDate.getDate();
+  let month = months[parsedDate.getMonth()];
+
+  return `${date}/${month}`;
+}
+
 function displayForecast(response) {
+  console.log(response);
   let forecast = response.data.daily;
-
   let forecastElement = document.querySelector("#next-forecast");
-
   let forecastHTML = `<div class="row">`;
-
   forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
+    if (index < 7 && index > 0) {
       forecastHTML =
         forecastHTML +
         `
   <div class="col-2">
     <div class="next-forecast">
-          <p>${formatDay(forecastDay.dt)} <br />4/7</p></div>
+          <p>${formatDay(forecastDay.dt)} <br />${formatForecastDate(
+          forecastDay.dt
+        )}</p></div>
           <p><img src="https://openweathermap.org/img/wn/${
             forecastDay.weather[0].icon
           }@2x.png"/></p>
@@ -127,6 +149,11 @@ let apiUrlBase = "https://api.openweathermap.org/data/2.5/weather";
 function onUserInput(event) {
   event.preventDefault();
   let input = inputElement.value;
+  axios.get(getApiUrl(input)).then(applyWeatherData);
+}
+
+function fakeInput() {
+  let input = "Lviv";
   axios.get(getApiUrl(input)).then(applyWeatherData);
 }
 
@@ -230,4 +257,4 @@ let fTempLink = document.querySelector("#fahrenheit-temp");
 fTempLink.addEventListener("click", convertTemperature);
 cTempLink.addEventListener("click", customizeTemperature);
 
-displayCurrentLocation();
+fakeInput();
