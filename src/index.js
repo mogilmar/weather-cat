@@ -62,6 +62,33 @@ searchButton.addEventListener("click", onUserInput);
 let locationButton = document.querySelector("#location-button");
 locationButton.addEventListener("click", onDefineCurrentLocation);
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#next-forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+  <div class="col-2">
+    <div class="next-forecast">
+          <p>${day} <br />4/7</p></div>
+          <p><i class="fa-solid fa-sun weather-pic"></i></p>
+          <p>
+            +25°C <br />
+            <span class="min-temperature">+15°C</span>
+          </p>
+    </div>
+  
+        `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function onDefineCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(applyLocationData);
@@ -177,3 +204,5 @@ let fTempLink = document.querySelector("#fahrenheit-temp");
 
 fTempLink.addEventListener("click", convertTemperature);
 cTempLink.addEventListener("click", customizeTemperature);
+
+displayForecast();
