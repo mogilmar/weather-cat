@@ -62,27 +62,40 @@ searchButton.addEventListener("click", onUserInput);
 let locationButton = document.querySelector("#location-button");
 locationButton.addEventListener("click", onDefineCurrentLocation);
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 function displayForecast(response) {
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#next-forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
   <div class="col-2">
     <div class="next-forecast">
-          <p>${day} <br />4/7</p></div>
-          <p><i class="fa-solid fa-sun weather-pic"></i></p>
+          <p>${formatDay(forecastDay.dt)} <br />4/7</p></div>
+          <p><img src="https://openweathermap.org/img/wn/${
+            forecastDay.weather[0].icon
+          }@2x.png"/></p>
           <p>
-            +25°C <br />
-            <span class="min-temperature">+15°C</span>
+            ${Math.round(forecastDay.temp.max)}°C <br />
+            <span class="min-temperature">${Math.round(
+              forecastDay.temp.min
+            )}°C</span>
           </p>
     </div>
-  
         `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
