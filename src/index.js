@@ -429,13 +429,13 @@ function convertTemperature(event) {
   event.preventDefault();
   let tempElement = document.querySelector("#current-temp");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  tempElement.innerHTML = Math.round(fahrenheitTemperature);
+  tempElement.innerHTML = formatTemperature(fahrenheitTemperature);
 }
 
 function customizeTemperature(event) {
   event.preventDefault();
   let tempElement = document.querySelector("#current-temp");
-  tempElement.innerHTML = Math.round(celsiusTemperature);
+  tempElement.innerHTML = formatTemperature(celsiusTemperature);
 }
 
 let celsiusTemperature = null;
