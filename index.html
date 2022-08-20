@@ -29,7 +29,7 @@
   <body>
     <div class="container">
       <video autoplay muted loop id="myVideo">
-        <source src="videos/rain.mp4" type="video/mp4" />
+        <source src="videos/rain.mp4" type="video/mp4" id="background"/>
       </video>
       <h6>Weather.Cat</h6>
       <br />
@@ -59,7 +59,7 @@
 
       <div class="row align-items-end main-information">
         <div class="col-2 current-temperature">
-          <p style="margin-bottom: 3px">
+          <p id="current-temp-p" style="margin-bottom: 3px; mix-blend-mode: difference;">
             <span id="current-temp"> +15</span>°<a href="#" id="celsius-temp"
               >C</a
             >
