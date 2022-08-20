@@ -29,11 +29,11 @@
   <body>
     <div class="container">
       <video autoplay muted loop id="myVideo">
-        <source src="videos/rain.mp4" type="video/mp4" id="background"/>
+        <source src="videos/rain.mp4" type="video/mp4" id="background" />
       </video>
       <h6>Weather.Cat</h6>
       <br />
-      <form>
+      <form class="col-md-12 col-lg-6">
         <div class="input-group mb-3 search">
           <input
             type="search"
@@ -58,8 +58,11 @@
       <div class="row space"></div>
 
       <div class="row align-items-end main-information">
-        <div class="col-2 current-temperature">
-          <p id="current-temp-p" style="margin-bottom: 3px; mix-blend-mode: difference;">
+        <div class="col-md-12 col-lg-3 col-xl-2 current-temperature">
+          <p
+            id="current-temp-p"
+            style="margin-bottom: 3px; mix-blend-mode: difference"
+          >
             <span id="current-temp"> +15</span>°<a href="#" id="celsius-temp"
               >C</a
             >
@@ -68,7 +71,7 @@
           </p>
         </div>
 
-        <div class="col-10 main-weather-details">
+        <div class="col-md-12 col-lg-9 col-xl-10 main-weather-details">
           <p class="city-date" style="margin-left: 3px">
             <span class="city" id="main-city">Paris</span> <br />
             <span class="date" id="current-date">17:22 - Sunday, 03/07</span>
@@ -95,8 +98,7 @@
       <div class="row space-2"></div>
 
       <div class="row next-forecast" id="next-forecast"></div>
-        
-      </div>
+
       <br />
       <p class="link">
         <a href="https://github.com/mogilmar/weather-cat" target="blank"
